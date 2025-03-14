@@ -1,3 +1,6 @@
-@for (number of numbers; track number) {
-  <p class="text-black">{{ number }}</p>
+<h2>Rem dup</h2>
+<input [(ngModel)]="input" placeholder="numbs">
+<button (click)="removeDuplicate()">Remov dup</button>
+@if (results.length >0) {
+  <p>Result: {{  results.join(',')}}</p>
 }
