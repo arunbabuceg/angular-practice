@@ -1,0 +1,58 @@
+<div class="min-h-screen bg-gray-50 flex flex-col items-center">
+    <!-- Navbar -->
+    <nav class="w-full bg-sky-700 text-white p-4 flex justify-between items-center shadow-md">
+        <h1 class="text-xl font-bold">Insta-Chat</h1>
+        <div>
+            <a href="#" class="mr-4 hover:underline">Home</a>
+            <a href="#" class="mr-4 hover:underline">About</a>
+            <a href="#" class="hover:underline">Privacy Policy</a>
+        </div>
+    </nav>
+
+    <!-- Chat Card -->
+    <div class="mt-10 p-6 bg-white shadow-xl rounded-lg w-96">
+        <h2 class="text-lg font-bold text-indigo-900">Send messages instantly</h2>
+
+        <!-- Form -->
+        <form [formGroup]="chatForm" class="mt-4">
+            <!-- Country Code Dropdown -->
+            <label class="block text-sm font-semibold text-gray-700">Country Code</label>
+            <select formControlName="countryCode" class="w-full p-2 border rounded mt-1 bg-gray-50">
+                <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.name }}</option>
+            </select>
+
+            <!-- Phone Number Input -->
+            <label class="block mt-3 text-sm font-semibold text-gray-700">Phone Number</label>
+            <input type="text" formControlName="phoneNumber" class="w-full p-2 border rounded mt-1 bg-gray-50"
+                placeholder="Enter 10-digit number">
+            <p *ngIf="chatForm.controls['phoneNumber'].invalid && chatForm.controls['phoneNumber'].touched"
+                class="text-red-500 text-sm">
+                Please enter a valid 10-digit phone number.
+            </p>
+
+            <!-- Message Input -->
+            <label class="block mt-3 text-sm font-semibold text-gray-700">Message (Optional)</label>
+            <textarea formControlName="message" class="w-full p-2 border rounded mt-1 bg-gray-50"
+                placeholder="Type your message here"></textarea>
+
+            <!-- Buttons with Icons -->
+            <button type="button" (click)="openWhatsApp()"
+                class="w-full mt-4 p-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded flex items-center justify-center"
+                [disabled]="chatForm.invalid">
+                <img src="assets/icons/wap.png" alt="WhatsApp" class="w-6 h-6 mr-2">
+                Send WhatsApp
+            </button>
+
+            <button type="button" (click)="openTelegram()"
+                class="w-full mt-2 p-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded flex items-center justify-center">
+                <img src="assets/icons/telegram.png" alt="Telegram" class="w-6 h-6 mr-2">
+                Send Telegram
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-6 text-gray-700">
+        <p>&copy; 2025 Insta-Chat. All Rights Reserved.</p>
+    </footer>
+</div>
